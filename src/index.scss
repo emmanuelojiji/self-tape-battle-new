@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+}
+
+.page-container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-top: 50px;
+}
+
+.page-title {
+  font-size: 24px;
+}
+
+.page-header{
+  margin-bottom: 50px;
+}

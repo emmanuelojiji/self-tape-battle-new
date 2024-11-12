@@ -1,0 +1,7 @@
+.battle-grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+

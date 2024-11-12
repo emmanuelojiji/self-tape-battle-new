@@ -1,0 +1,30 @@
+.EntryCard {
+  cursor: pointer;
+  .video-container {
+    min-width: 100%;
+    height: 250px;
+    margin-bottom: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+}
+
+.play-button {
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+  position: absolute;
+  background: greenyellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

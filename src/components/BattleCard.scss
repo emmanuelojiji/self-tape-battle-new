@@ -1,0 +1,21 @@
+.battle-card {
+  .img-container {
+    max-width: 300px;
+    position: relative;
+    img {
+      object-fit: cover;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      
+    }
+  }
+}
+
+.quantity-pill {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  background: white;
+}

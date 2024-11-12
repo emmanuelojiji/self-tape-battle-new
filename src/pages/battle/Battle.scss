@@ -1,0 +1,16 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Battle {
+  position: relative;
+  height: 100vh;
+}
+
+.entry-grid{
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 30px;
+}
