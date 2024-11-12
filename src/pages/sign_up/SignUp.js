@@ -28,7 +28,7 @@ const SignUp = () => {
         bio: "",
         webLink: "",
         email: auth.currentUser.email,
-        coins: "0",
+        coins: 1,
       });
 
       navigate("/onboarding");

@@ -1,6 +1,6 @@
 import { async } from "@firebase/util";
 import { onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { createContext, useContext, useState } from "react";
 import { Navigate, navigate, redirect, useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
@@ -17,12 +17,17 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   onAuthStateChanged(auth, async (user) => {
+    const userRef = doc(db, "users", user.uid);
+
+    onSnapshot(userRef, (doc) => {
+      setCoins(doc.data().coins);
+    });
+
     if (user) {
-      const userRef = doc(db, "users", user.uid);
       setUID(user.uid);
       try {
         const userSnapshot = await getDoc(userRef);
-        setCoins(userSnapshot.data().coins);
+
         setFirstName(userSnapshot.data().firstName);
         setLastName(userSnapshot.data().lastName);
         setUsername(userSnapshot.data().username);

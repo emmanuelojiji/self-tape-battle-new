@@ -70,18 +70,20 @@ const VideoModal = () => {
   };
 
   const handleVoting = async () => {
-    try {
-      if (userHasVoted) {
-        await updateDoc(entryRef, {
-          votes: arrayRemove(uid),
-        });
-      } else {
+    if (!userHasVoted) {
+      try {
         await updateDoc(entryRef, {
           votes: arrayUnion(uid),
         });
+
+        const userRef = doc(db, "users", uid);
+        const userSnapshot = await getDoc(userRef);
+        await updateDoc(userRef, {
+          coins: userSnapshot.data().coins + 1,
+        });
+      } catch (error) {
+        console.error("Error handling vote", error);
       }
-    } catch (error) {
-      console.error("Error handling vote", error);
     }
   };
 

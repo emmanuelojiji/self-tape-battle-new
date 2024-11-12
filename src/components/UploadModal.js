@@ -4,9 +4,13 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "../firebase";
 import { UserContext } from "../contexts/UserContext";
 import { useParams } from "react-router-dom";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 
-const UploadModal = ({ setUploadModalVisible }) => {
+const UploadModal = ({
+  setUploadModalVisible,
+  setIsRewardModalVisible,
+  setCoinsEarned,
+}) => {
   const { battleId } = useParams();
 
   const { uid } = useContext(UserContext);
@@ -40,11 +44,21 @@ const UploadModal = ({ setUploadModalVisible }) => {
         uid: uid,
       });
 
+      const userRef = doc(db, "users", uid);
+      const userSnapshot = await getDoc(userRef);
+
+      await updateDoc(userRef, {
+        coins: userSnapshot.data().coins + 1,
+      });
+
       setIsUploading(false);
       setFile(null);
       setUploadModalVisible(false);
+      setCoinsEarned(1);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsRewardModalVisible(true);
     }
   };
 

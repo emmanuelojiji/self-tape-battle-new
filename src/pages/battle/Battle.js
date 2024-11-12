@@ -6,8 +6,14 @@ import { db, storage } from "../../firebase";
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import UploadModal from "../../components/UploadModal";
 import EntryCard from "../../components/EntryCard";
+import RewardModal from "../../components/RewardModal";
 
-const Battle = () => {
+const Battle = ({
+  isRewardModalVisible,
+  setIsRewardModalVisible,
+  coinsEarned,
+  setCoinsEarned,
+}) => {
   const { battleId } = useParams();
 
   useEffect(() => {
@@ -31,7 +37,7 @@ const Battle = () => {
       console.log("Sorry we couldn't get this!");
     }
   };
-
+ 
   const getEntries = async () => {
     try {
       const entriesCollection = collection(db, "battles", battleId, "entries");
@@ -50,40 +56,46 @@ const Battle = () => {
   const [chosenVideo, setChosenVideo] = useState();
 
   return (
-    <div className="Battle">
-      {uploadModalVisible && (
-        <UploadModal
-          id={battleId}
-          setUploadModalVisible={setUploadModalVisible}
-        />
-      )}
-      <Header />
-      <div className="page-container">
-        <div className="page-header">
-          <div>
-            <Outlet />
-            <h1 className="page-title">{title}</h1>
-            <p>{prize}</p>
-          </div>
+    <>
+      {isRewardModalVisible && <RewardModal coinsEarned={coinsEarned} />}
+      <div className="Battle">
+        {uploadModalVisible && (
+          <UploadModal
+            id={battleId}
+            setUploadModalVisible={setUploadModalVisible}
+            setIsRewardModalVisible={setIsRewardModalVisible}
+            coinsEarned={coinsEarned}
+            setCoinsEarned={setCoinsEarned}
+          />
+        )}
+        <Header />
+        <div className="page-container">
+          <div className="page-header">
+            <div>
+              <Outlet />
+              <h1 className="page-title">{title}</h1>
+              <p>{prize}</p>
+            </div>
 
-          <button onClick={() => setUploadModalVisible(true)}>
-            Join Battle
-          </button>
-        </div>
-        <div className="entry-grid">
-          {entries.map((entry) => (
-            <EntryCard
-              src={entry.url}
-              votes={entry.votes}
-              uid={entry.uid}
-              onClick={() => {
-                console.log(chosenVideo);
-              }}
-            />
-          ))}
+            <button onClick={() => setUploadModalVisible(true)}>
+              Join Battle
+            </button>
+          </div>
+          <div className="entry-grid">
+            {entries.map((entry) => (
+              <EntryCard
+                src={entry.url}
+                votes={entry.votes}
+                uid={entry.uid}
+                onClick={() => {
+                  console.log(chosenVideo);
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
