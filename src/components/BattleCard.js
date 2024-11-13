@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import "./BattleCard.scss";
 
-const BattleCard = ({ title, prize, bg, id }) => {
+const BattleCard = ({ title, prize, bg, id, amountOfEntrees }) => {
   return (
     <Link to={`${id}`}>
       <div className="battle-card">
         <div className="img-container">
-          <div className="quantity-pill">20 Fighters</div>
+          <div className="entries-pill">{amountOfEntrees} Fighters</div>
           <img src={bg} />
         </div>
         <h3>{title}</h3>

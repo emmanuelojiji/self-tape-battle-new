@@ -42,6 +42,7 @@ const Battles = () => {
               prize={battle.prize}
               bg={hairspray}
               id={battle.id}
+              amountOfEntrees={battle.entries}
             />
           ))}
         </div>

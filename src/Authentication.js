@@ -1,9 +1,11 @@
 import { Navigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { auth } from "./firebase";
+import { UserContext } from "./contexts/UserContext";
 
-const Authentication = ({element}) => {
-  return <>{auth.currentUser ? element : <Navigate to="/" />}</>;
+const Authentication = ({ element }) => {
+  const { user } = useContext(UserContext);
+  return <>{user ? element : <Navigate to="/" />}</>;
 };
 
 export default Authentication;

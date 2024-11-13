@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import "./EntryCard.scss";
 
-const EntryCard = ({ src, votes, uid }) => {
+const EntryCard = ({ src, votes, uid, firstName, lastName }) => {
   const { battleId } = useParams();
   return (
     <>
@@ -12,7 +12,9 @@ const EntryCard = ({ src, votes, uid }) => {
             <div className="play-button">play</div>
           </div>
 
-          <h3>Jack Jones</h3>
+          <h3>
+            {firstName} {lastName}
+          </h3>
           <p>{votes.length} Votes</p>
         </div>
       </Link>

@@ -37,7 +37,10 @@ function App() {
 
               <Route path="/:username" element={<Profile />} />
 
-              <Route path="/onboarding" element={<Onboarding />} />
+              <Route
+                path="/onboarding"
+                element={<Authentication element={<Onboarding />} />}
+              />
             </Routes>
           </BrowserRouter>
         </RewardModalProvider>

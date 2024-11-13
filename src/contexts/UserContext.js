@@ -16,15 +16,16 @@ export const UserProvider = ({ children }) => {
   const [uid, setUID] = useState(null);
   const [user, setUser] = useState(null);
 
+  const [loading, setLoading] = useState(true);
+
   onAuthStateChanged(auth, async (user) => {
-    const userRef = doc(db, "users", user.uid);
-
-    onSnapshot(userRef, (doc) => {
-      setCoins(doc.data().coins);
-    });
-
     if (user) {
       setUID(user.uid);
+      const userRef = doc(db, "users", user.uid);
+
+      onSnapshot(userRef, (doc) => {
+        setCoins(doc.data().coins);
+      });
       try {
         const userSnapshot = await getDoc(userRef);
 
@@ -32,18 +33,30 @@ export const UserProvider = ({ children }) => {
         setLastName(userSnapshot.data().lastName);
         setUsername(userSnapshot.data().username);
         setUser(user);
+        setUserEmail(user.email);
       } catch {
         console.log("Couldn't get document!");
+      } finally{
+        setLoading(false)
       }
-      setUserEmail(user.email);
     } else {
-      //
+      setLoading(false);
     }
   });
 
   return (
     <UserContext.Provider
-      value={{ firstName, lastName, userEmail, coins, uid, username }}
+      value={{
+        user,
+        firstName,
+        lastName,
+        userEmail,
+        coins,
+        uid,
+        username,
+        loading,
+        setLoading,
+      }}
     >
       {children}
     </UserContext.Provider>

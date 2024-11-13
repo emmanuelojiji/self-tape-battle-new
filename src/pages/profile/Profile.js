@@ -1,25 +1,36 @@
 import userEvent from "@testing-library/user-event";
-import { collection, getDoc, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  collectionGroup,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import { UserContext } from "../../contexts/UserContext";
 import { db } from "../../firebase";
 import "./Profile.scss";
+import EntryCard from "../../components/EntryCard";
 
 const Profile = () => {
   const { username } = useParams();
 
   const usersCollection = collection(db, "users");
 
+  const [uid, setUid] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [bio, setBio] = useState("");
   const [webLink, setWebLink] = useState("");
+  const [entries, setEntries] = useState([]);
 
   useEffect(() => {
     getUser();
-  }, []);
+    getEntries();
+  }, [uid, username]);
 
   const getUser = async () => {
     try {
@@ -38,6 +49,25 @@ const Profile = () => {
       setLastName(user.lastName);
       setBio(user.bio);
       setWebLink(user.webLink);
+      setUid(user.uid);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getEntries = async () => {
+    try {
+      const entriesRef = collectionGroup(db, "entries");
+      const q = query(entriesRef, where("uid", "==", uid));
+      const entriesRefSnapshot = await getDocs(q);
+
+      const entries = [];
+
+      entriesRefSnapshot.forEach((doc) => {
+        entries.push(doc.data());
+      });
+
+      setEntries(entries);
     } catch (error) {
       console.log(error);
     }
@@ -52,12 +82,19 @@ const Profile = () => {
             <div className="headshot"></div>
             <div className="user-info">
               <h1>
-                {firstName} {lastName}
+                {firstName} {lastName} {uid}
               </h1>
               <p>{username}</p>
               <p>{bio}</p>
-              <a href={webLink} target="_blank">{webLink}</a>
+              <a href={webLink} target="_blank">
+                {webLink}
+              </a>
             </div>
+          </div>
+          <div className="entry-grid">
+            {entries.map((entry) => (
+              <EntryCard votes={entry.votes} />
+            ))}
           </div>
         </div>
       </div>

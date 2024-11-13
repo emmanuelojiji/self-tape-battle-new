@@ -9,19 +9,41 @@ header {
   border-bottom: solid 1px rgb(228, 228, 228);
 }
 
-.user-header-container{
+.user-header-container {
   display: flex;
   align-items: center;
-  gap:15px;
+  gap: 15px;
+  min-height: 30px;
 }
 
-.avatar-circle{
+.avatar-circle {
   height: 30px;
   width: 30px;
   border-radius: 100%;
   background: grey;
 }
 
-.logo{
+.logo {
   max-width: 120px;
+}
+
+.coins {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background: gold;
+}
+
+.user-wrap,
+.coin-wrap {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.user-header-skeleton{
+  min-height: 30px;
+  width: 200px;
+  background: rgb(227, 227, 227);
+  border-radius: 100px;
 }

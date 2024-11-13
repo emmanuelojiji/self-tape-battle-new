@@ -8,13 +8,19 @@ import UploadModal from "../../components/UploadModal";
 import EntryCard from "../../components/EntryCard";
 import RewardModal from "../../components/RewardModal";
 import { RewardModalContext } from "../../contexts/RewardModalContext";
+import { UserContext } from "../../contexts/UserContext";
 
 const Battle = ({}) => {
   const { battleId } = useParams();
 
+  const { uid } = useContext(UserContext);
+
+  const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     getBattle();
     getEntries();
+    getUsers();
   }, [battleId]);
 
   const { isRewardModalVisible, setIsRewardModalVisible } =
@@ -23,6 +29,7 @@ const Battle = ({}) => {
   const [title, setTitle] = useState("");
   const [prize, setPrize] = useState("");
   const [entries, setEntries] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
   const [uploadModalVisible, setUploadModalVisible] = useState(false);
 
   const battleDoc = doc(db, "battles", battleId);
@@ -52,6 +59,24 @@ const Battle = ({}) => {
     }
   };
 
+  const getUsers = async () => {
+    const usersCollection = collection(db, "users");
+    const usersArray = [];
+    try {
+      const usersSnapshot = await getDocs(usersCollection);
+
+      usersSnapshot.forEach((doc) => {
+        usersArray.push(doc.data());
+      });
+
+      setAllUsers(usersArray);
+    } catch {
+      console.log("couldn't get users");
+    } finally {
+      setAllUsers(usersArray);
+    }
+  };
+
   const [chosenVideo, setChosenVideo] = useState();
 
   return (
@@ -76,7 +101,7 @@ const Battle = ({}) => {
             </div>
 
             <button onClick={() => setUploadModalVisible(true)}>
-              Join Battle
+              {entries.find((entry) => entry.uid === uid) ? "Joined" : "Join"}
             </button>
           </div>
           <div className="entry-grid">
@@ -85,6 +110,9 @@ const Battle = ({}) => {
                 src={entry.url}
                 votes={entry.votes}
                 uid={entry.uid}
+                firstName={
+                  allUsers.find((user) => user.uid === entry.uid)?.firstName
+                }
                 onClick={() => {
                   console.log(chosenVideo);
                 }}

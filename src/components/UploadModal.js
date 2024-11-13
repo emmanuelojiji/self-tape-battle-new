@@ -48,6 +48,12 @@ const UploadModal = ({ setUploadModalVisible, setCoinsEarned }) => {
         coins: userSnapshot.data().coins + 1,
       });
 
+      const battleRef = doc(db, "battles", battleId);
+      const battleSnapshot = await getDoc(battleRef);
+      await updateDoc(battleRef, {
+        entries: battleSnapshot.data().entries + 1,
+      });
+
       setIsUploading(false);
       setFile(null);
       setUploadModalVisible(false);
