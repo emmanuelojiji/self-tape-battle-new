@@ -5,12 +5,9 @@ import { db, storage } from "../firebase";
 import { UserContext } from "../contexts/UserContext";
 import { useParams } from "react-router-dom";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { RewardModalContext } from "../contexts/RewardModalContext";
 
-const UploadModal = ({
-  setUploadModalVisible,
-  setIsRewardModalVisible,
-  setCoinsEarned,
-}) => {
+const UploadModal = ({ setUploadModalVisible, setCoinsEarned }) => {
   const { battleId } = useParams();
 
   const { uid } = useContext(UserContext);
@@ -61,6 +58,8 @@ const UploadModal = ({
       setIsRewardModalVisible(true);
     }
   };
+
+  const { setIsRewardModalVisible } = useContext(RewardModalContext);
 
   return (
     <div className="upload-modal-container">

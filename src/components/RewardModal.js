@@ -1,14 +1,14 @@
 import ConfettiExplosion from "react-confetti-explosion";
 import "./RewardModal.scss";
 
-const RewardModal = ({ coinsEarned }) => {
+const RewardModal = ({ coinsEarned, closeModal }) => {
   return (
     <>
       <div className="reward-modal-container">
         <div className="RewardModal">
           <h3>You've earned {coinsEarned} coin!</h3>
           <ConfettiExplosion zIndex={2} />
-          <button>Close</button>
+          <button onClick={closeModal}>Close</button>
         </div>
       </div>
     </>

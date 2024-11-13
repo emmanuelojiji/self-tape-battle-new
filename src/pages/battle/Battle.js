@@ -1,25 +1,24 @@
 import "./Battle.scss";
 import Header from "../../components/Header";
 import { Outlet, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { db, storage } from "../../firebase";
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import UploadModal from "../../components/UploadModal";
 import EntryCard from "../../components/EntryCard";
 import RewardModal from "../../components/RewardModal";
+import { RewardModalContext } from "../../contexts/RewardModalContext";
 
-const Battle = ({
-  isRewardModalVisible,
-  setIsRewardModalVisible,
-  coinsEarned,
-  setCoinsEarned,
-}) => {
+const Battle = ({}) => {
   const { battleId } = useParams();
 
   useEffect(() => {
     getBattle();
     getEntries();
-  }, []);
+  }, [battleId]);
+
+  const { isRewardModalVisible, setIsRewardModalVisible } =
+    useContext(RewardModalContext);
 
   const [title, setTitle] = useState("");
   const [prize, setPrize] = useState("");
@@ -37,7 +36,7 @@ const Battle = ({
       console.log("Sorry we couldn't get this!");
     }
   };
- 
+
   const getEntries = async () => {
     try {
       const entriesCollection = collection(db, "battles", battleId, "entries");
@@ -46,8 +45,8 @@ const Battle = ({
       const entriesArray = [];
       entriesSnapshot.forEach((doc) => {
         entriesArray.push(doc.data());
-        setEntries(entriesArray);
       });
+      setEntries(entriesArray);
     } catch {
       console.log("can't get this sorry");
     }
@@ -57,15 +56,14 @@ const Battle = ({
 
   return (
     <>
-      {isRewardModalVisible && <RewardModal coinsEarned={coinsEarned} />}
+      {isRewardModalVisible && (
+        <RewardModal closeModal={() => setIsRewardModalVisible(false)} />
+      )}
       <div className="Battle">
         {uploadModalVisible && (
           <UploadModal
             id={battleId}
             setUploadModalVisible={setUploadModalVisible}
-            setIsRewardModalVisible={setIsRewardModalVisible}
-            coinsEarned={coinsEarned}
-            setCoinsEarned={setCoinsEarned}
           />
         )}
         <Header />

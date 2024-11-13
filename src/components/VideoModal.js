@@ -9,6 +9,7 @@ import {
 } from "firebase/firestore";
 import { useContext, useEffect, useState, useMemo } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import { RewardModalContext } from "../contexts/RewardModalContext";
 import { UserContext } from "../contexts/UserContext";
 import { db } from "../firebase";
 import "./VideoModal.scss";
@@ -81,6 +82,8 @@ const VideoModal = () => {
         await updateDoc(userRef, {
           coins: userSnapshot.data().coins + 1,
         });
+
+        setIsRewardModalVisible(true);
       } catch (error) {
         console.error("Error handling vote", error);
       }
@@ -88,6 +91,9 @@ const VideoModal = () => {
   };
 
   const navigate = useNavigate();
+
+  const { setIsRewardModalVisible } = useContext(RewardModalContext);
+
   return (
     <div className="VideoModal">
       <div className="video-container">
