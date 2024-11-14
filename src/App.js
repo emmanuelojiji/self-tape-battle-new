@@ -35,7 +35,12 @@ function App() {
                 />
               </Route>
 
-              <Route path="/:username" element={<Profile />} />
+              <Route path="/:username" element={<Profile />}>
+                <Route
+                  path="/:username/:battleId/:uploadUid"
+                  element={<VideoModal />}
+                />
+              </Route>
 
               <Route
                 path="/onboarding"

@@ -8,7 +8,7 @@ import {
   where,
 } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import { UserContext } from "../../contexts/UserContext";
 import { db } from "../../firebase";
@@ -75,6 +75,7 @@ const Profile = () => {
 
   return (
     <>
+      <Outlet />
       <Header />
       <div className="Profile">
         <div className="page-container">
@@ -98,6 +99,7 @@ const Profile = () => {
                 src={entry.url}
                 uid={entry.uid}
                 battleId={entry.battleId}
+                page={username}
               />
             ))}
           </div>

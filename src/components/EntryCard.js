@@ -1,11 +1,18 @@
 import { Link, useParams } from "react-router-dom";
 import "./EntryCard.scss";
 
-const EntryCard = ({ src, votes, uid, firstName, lastName }) => {
-  const { battleId } = useParams();
+const EntryCard = ({
+  src,
+  votes,
+  uid,
+  firstName,
+  lastName,
+  page,
+  battleId,
+}) => {
   return (
     <>
-      <Link to={`/battles/${battleId}/${uid}`}>
+      <Link to={`/${page}/${battleId}/${uid}`}>
         <div className="EntryCard">
           <div className="video-container">
             <video src={src} onContextMenu={(e) => e.preventDefault()} />

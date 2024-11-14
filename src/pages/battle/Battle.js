@@ -111,10 +111,10 @@ const Battle = ({}) => {
                 src={entry.url}
                 votes={entry.votes}
                 uid={entry.uid}
+                page="battles"
                 firstName={
                   allUsers.find((user) => user.uid === entry.uid)?.firstName
                 }
-         
                 onClick={() => {
                   console.log(chosenVideo);
                 }}
