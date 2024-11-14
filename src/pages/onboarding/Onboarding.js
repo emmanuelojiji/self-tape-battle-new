@@ -8,7 +8,8 @@ import { db } from "../../firebase";
 import "./Onboarding.scss";
 
 const Onboarding = () => {
-  const { uid, username } = useContext(UserContext);
+  const { uid, username, isOnboardingComplete, loading } =
+    useContext(UserContext);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -38,7 +39,9 @@ const Onboarding = () => {
 
   const navigate = useNavigate();
 
-  return (
+  return !loading && isOnboardingComplete ? (
+    <Navigate to="/battles" />
+  ) : (
     <div className="Onboarding">
       <Header />
       <div className="page-container">

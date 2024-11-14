@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
-import Authentication from "./Authentication";
 import Battles from "./pages/battles/Battles";
 import Landing from "./pages/landing/Landing";
 import SignIn from "./pages/sign_in/SignIn";
@@ -12,6 +11,7 @@ import VideoModal from "./components/VideoModal";
 import Profile from "./pages/profile/Profile";
 import { useState } from "react";
 import { RewardModalProvider } from "./contexts/RewardModalContext";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   return (
@@ -26,9 +26,21 @@ function App() {
 
               <Route
                 path="/battles"
-                element={<Authentication element={<Battles />} />}
+                element={
+                  <ProtectedRoute>
+                    <Battles />
+                  </ProtectedRoute>
+                }
               />
-              <Route path="/battles/:battleId" element={<Battle />}>
+
+              <Route
+                path="/battles/:battleId"
+                element={
+                  <ProtectedRoute>
+                    <Battle />
+                  </ProtectedRoute>
+                }
+              >
                 <Route
                   path="/battles/:battleId/:uploadUid"
                   element={<VideoModal />}
@@ -44,7 +56,11 @@ function App() {
 
               <Route
                 path="/onboarding"
-                element={<Authentication element={<Onboarding />} />}
+                element={
+                  <ProtectedRoute>
+                    <Onboarding />
+                  </ProtectedRoute>
+                }
               />
             </Routes>
           </BrowserRouter>

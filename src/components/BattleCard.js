@@ -3,7 +3,7 @@ import "./BattleCard.scss";
 
 const BattleCard = ({ title, prize, bg, id, amountOfEntrees }) => {
   return (
-    <Link to={`${id}`}>
+    <Link to={`/battles/${id}`}>
       <div className="battle-card">
         <div className="img-container">
           <div className="entries-pill">{amountOfEntrees} Fighters</div>
