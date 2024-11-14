@@ -8,7 +8,7 @@ import {
   where,
 } from "firebase/firestore";
 import { useContext, useEffect, useState, useMemo } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useHistory, useParams, Link } from "react-router-dom";
 import { RewardModalContext } from "../contexts/RewardModalContext";
 import { UserContext } from "../contexts/UserContext";
 import { db } from "../firebase";
@@ -28,6 +28,7 @@ const VideoModal = () => {
   const [username, setUsername] = useState("");
   // Calculate userHasVoted based on votes array and uid
   const userHasVoted = useMemo(() => votes.includes(uid), [votes, uid]);
+
 
   useEffect(() => {
     getEntry();
@@ -112,7 +113,7 @@ const VideoModal = () => {
               {userHasVoted ? "Voted!" : "Vote"}
             </button>
 
-            <button onClick={() => navigate(`/battles/${battleId}`)}>
+            <button onClick={() => navigate(-1)}>
               Close
             </button>
           </div>
