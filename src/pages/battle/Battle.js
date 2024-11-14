@@ -15,7 +15,7 @@ const Battle = ({}) => {
 
   const { uid } = useContext(UserContext);
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getBattle();
@@ -107,12 +107,14 @@ const Battle = ({}) => {
           <div className="entry-grid">
             {entries.map((entry) => (
               <EntryCard
+                battleId={battleId}
                 src={entry.url}
                 votes={entry.votes}
                 uid={entry.uid}
                 firstName={
                   allUsers.find((user) => user.uid === entry.uid)?.firstName
                 }
+         
                 onClick={() => {
                   console.log(chosenVideo);
                 }}

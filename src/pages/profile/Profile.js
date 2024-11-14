@@ -93,7 +93,12 @@ const Profile = () => {
           </div>
           <div className="entry-grid">
             {entries.map((entry) => (
-              <EntryCard votes={entry.votes} />
+              <EntryCard
+                votes={entry.votes}
+                src={entry.url}
+                uid={entry.uid}
+                battleId={entry.battleId}
+              />
             ))}
           </div>
         </div>
