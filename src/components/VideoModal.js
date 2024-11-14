@@ -29,7 +29,6 @@ const VideoModal = () => {
   // Calculate userHasVoted based on votes array and uid
   const userHasVoted = useMemo(() => votes.includes(uid), [votes, uid]);
 
-
   useEffect(() => {
     getEntry();
   }, [uploadUid]);
@@ -113,9 +112,7 @@ const VideoModal = () => {
               {userHasVoted ? "Voted!" : "Vote"}
             </button>
 
-            <button onClick={() => navigate(-1)}>
-              Close
-            </button>
+            <button onClick={() => navigate(-1)}>Close</button>
           </div>
         </div>
         <video src={url} controls />

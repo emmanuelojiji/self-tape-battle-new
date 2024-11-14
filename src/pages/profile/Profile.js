@@ -26,6 +26,7 @@ const Profile = () => {
   const [bio, setBio] = useState("");
   const [webLink, setWebLink] = useState("");
   const [entries, setEntries] = useState([]);
+  const [rank, setRank] = useState("");
 
   useEffect(() => {
     getUser();
@@ -50,6 +51,7 @@ const Profile = () => {
       setBio(user.bio);
       setWebLink(user.webLink);
       setUid(user.uid);
+      setRank(user.rank);
     } catch (error) {
       console.log(error);
     }
@@ -83,8 +85,9 @@ const Profile = () => {
             <div className="headshot"></div>
             <div className="user-info">
               <h1>
-                {firstName} {lastName} {uid}
+                {firstName} {lastName}
               </h1>
+              <div className={`rank-pill ${rank}`}>{rank}</div>
               <p>{username}</p>
               <p>{bio}</p>
               <a href={webLink} target="_blank">
