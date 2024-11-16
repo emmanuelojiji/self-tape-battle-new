@@ -54,14 +54,7 @@ function App() {
                 />
               </Route>
 
-              <Route
-                path="/onboarding"
-                element={
-                  <ProtectedRoute>
-                    <Onboarding />
-                  </ProtectedRoute>
-                }
-              />
+              <Route path="/onboarding" element={<Onboarding />} />
             </Routes>
           </BrowserRouter>
         </RewardModalProvider>
