@@ -3,11 +3,16 @@ import { Navigate } from "react-router-dom";
 import { UserContext } from "./contexts/UserContext";
 
 const ProtectedRoute = ({ children }) => {
-  const { user, loading } = useContext(UserContext);
+  const { user, loading, isOnboardingComplete } = useContext(UserContext);
 
   if (loading) return <h1>Loading..</h1>;
 
-  return user ? children : <Navigate to="/signup" />;
+  if (user && isOnboardingComplete) return children;
+
+  if (user && !isOnboardingComplete) return <Navigate to="/onboarding" />;
+
+  return <Navigate to="/signup" />;
 };
+
 
 export default ProtectedRoute;

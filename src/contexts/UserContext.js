@@ -1,9 +1,10 @@
 import { async } from "@firebase/util";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Navigate, navigate, redirect, useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
+  
 
 export const UserContext = createContext();
 
@@ -19,32 +20,39 @@ export const UserProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(true);
 
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      setUID(user.uid);
-      const userRef = doc(db, "users", user.uid);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setLoading(true);
+      if (user) {
+        setUID(user.uid);
+        const userRef = doc(db, "users", user.uid);
 
-      onSnapshot(userRef, (doc) => {
-        setCoins(doc.data().coins);
-      });
-      try {
-        const userSnapshot = await getDoc(userRef);
+        const unsubSnapshot = onSnapshot(userRef, (doc) => {
+          setCoins(doc.data().coins);
+        });
 
-        setFirstName(userSnapshot.data().firstName);
-        setLastName(userSnapshot.data().lastName);
-        setUsername(userSnapshot.data().username);
-        setUser(user);
-        setUserEmail(user.email);
-        setIsOnboardingComplete(userSnapshot.data().isOnboardingComplete);
-      } catch {
-        console.log("Couldn't get document!");
-      } finally {
-        setLoading(false);
+        try {
+          const userSnapshot = await getDoc(userRef);
+          setFirstName(userSnapshot.data().firstName);
+          setLastName(userSnapshot.data().lastName);
+          setUsername(userSnapshot.data().username);
+          setUser(user);
+          setUserEmail(user.email);
+          setIsOnboardingComplete(userSnapshot.data().isOnboardingComplete);
+        } catch (error) {
+          console.log("Couldn't get document!", error);
+        }
+      } else {
+        setUser(null);
+        setIsOnboardingComplete(false);
       }
-    } else {
-      setLoading(false);
-    }
-  });
+      setLoading(false); // Ensure loading is false after updates
+    });
+
+    return () => {
+      unsubscribe(); // Clean up listener
+    };
+  }, []);
 
   return (
     <UserContext.Provider
@@ -58,7 +66,7 @@ export const UserProvider = ({ children }) => {
         username,
         loading,
         setLoading,
-        isOnboardingComplete
+        isOnboardingComplete,
       }}
     >
       {children}
