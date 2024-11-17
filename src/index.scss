@@ -23,7 +23,7 @@ a {
 }
 
 .page-container {
-  max-width: 1500px;
+  max-width: calc(1500px + 10%);
   margin: 0 auto;
   padding-left: 5%;
   padding-right: 5%;
@@ -34,10 +34,13 @@ a {
   font-size: 40px;
   text-transform: uppercase;
   font-weight: 900;
-  font-family: 'Arupala Grotesk', sans-serif;
-                                                
+  font-family: "Arupala Grotesk", sans-serif;
 }
 
 .page-header {
   margin-bottom: 40px;
+  //background: #EE4423;
+  //padding: 40px 40px;
+  //color: white;
+  //border-radius: 7px;
 }

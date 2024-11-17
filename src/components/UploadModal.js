@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { RewardModalContext } from "../contexts/RewardModalContext";
 
-const UploadModal = ({ setUploadModalVisible, setCoinsEarned }) => {
+const UploadModal = ({ setUploadModalVisible }) => {
   const { battleId } = useParams();
 
   const { uid } = useContext(UserContext);
@@ -61,11 +61,14 @@ const UploadModal = ({ setUploadModalVisible, setCoinsEarned }) => {
     } catch (error) {
       console.log(error);
     } finally {
+      setTitle("You're in the arena!");
+      setCoinsEarned(1);
       setIsRewardModalVisible(true);
     }
   };
 
-  const { setIsRewardModalVisible } = useContext(RewardModalContext);
+  const { setIsRewardModalVisible, setCoinsEarned, setTitle } =
+    useContext(RewardModalContext);
 
   return (
     <div className="upload-modal-container">

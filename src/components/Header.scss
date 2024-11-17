@@ -1,12 +1,12 @@
 header {
-  padding-left: 1.5%;
-  padding-right: 1.5%;
+  padding-left: 1%;
+  padding-right: 1%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 15px;
-  padding-bottom: 15px;
   border-bottom: solid 1px rgb(228, 228, 228);
+  padding-top: 7px;
+  padding-bottom: 7px;
 
   h3 {
     color: black;
@@ -16,22 +16,16 @@ header {
 .user-header-container {
   display: flex;
   align-items: center;
-  gap: 15px;
-  min-height: 30px;
-}
-
-.user-wrap {
-  background: #f0f0f0;
-  padding: 5px 10px;
-  border-radius: 30px;
-  font-weight: 700;
+  gap: 10px;
+  height: 100%;
 }
 
 .avatar-circle {
-  height: 30px;
-  width: 30px;
+  height: 35px;
+  width: 35px;
   border-radius: 100%;
-  background: grey;
+  background-position: center;
+  background-size: cover;
 }
 
 .logo {
@@ -46,10 +40,30 @@ header {
 }
 
 .user-wrap,
-.coin-wrap {
+.coin-wrap,
+.rank-wrap {
   display: flex;
   gap: 5px;
   align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  height: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-weight: 700;
+
+  // padding: 10px 20px;
+}
+.coin-wrap {
+  background: rgba(255, 197, 110, 0.2);
+}
+
+.rank-wrap {
+  background: rgba(154, 110, 255, 0.2);
+  height: 100%;
+  padding: 10px 20px;
 }
 
 .user-header-skeleton {

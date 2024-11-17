@@ -34,13 +34,14 @@ const Battles = () => {
     <>
       <Header />
       <div className="page-container">
-        <h1 className="page-title">Arena</h1>
+        <div className="page-header">
+          <h1 className="page-title">CHOOSE YOUR BATTLE</h1>
+        </div>
         <div className="battle-grid">
           {battles.map((battle) => (
             <BattleCard
               title={battle.name}
               prize={battle.prize}
-              bg={hairspray}
               id={battle.id}
               amountOfEntrees={battle.entries}
             />

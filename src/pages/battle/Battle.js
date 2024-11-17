@@ -97,11 +97,18 @@ const Battle = ({}) => {
             <div>
               <Outlet />
               <h1 className="page-title">{title}</h1>
-              <p>{prize}</p>
+              <p>
+                <b>{prize}</b>
+              </p>
             </div>
 
-            <button onClick={() => setUploadModalVisible(true)}>
-              {entries.find((entry) => entry.uid === uid) ? "Joined" : "Join"}
+            <button
+              onClick={() => setUploadModalVisible(true)}
+              className="button"
+            >
+              {entries.find((entry) => entry.uid === uid)
+                ? "Joined"
+                : "Join Battle"}
             </button>
           </div>
           <div className="entry-grid">

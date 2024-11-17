@@ -83,6 +83,8 @@ const VideoModal = () => {
           coins: userSnapshot.data().coins + 1,
         });
 
+        setTitle("Your vote is in!");
+        setCoinsEarned(1);
         setIsRewardModalVisible(true);
       } catch (error) {
         console.error("Error handling vote", error);
@@ -92,7 +94,13 @@ const VideoModal = () => {
 
   const navigate = useNavigate();
 
-  const { setIsRewardModalVisible } = useContext(RewardModalContext);
+  const {
+    setIsRewardModalVisible,
+    title,
+    setTitle,
+    coinsEarned,
+    setCoinsEarned,
+  } = useContext(RewardModalContext);
 
   return (
     <div className="VideoModal">

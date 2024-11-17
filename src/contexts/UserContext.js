@@ -4,7 +4,6 @@ import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { createContext, useContext, useEffect, useState } from "react";
 import { Navigate, navigate, redirect, useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
-  
 
 export const UserContext = createContext();
 
@@ -14,6 +13,7 @@ export const UserProvider = ({ children }) => {
   const [userEmail, setUserEmail] = useState(null);
   const [username, setUsername] = useState(null);
   const [coins, setCoins] = useState(null);
+  const [rank, setRank] = useState("");
   const [uid, setUID] = useState(null);
   const [user, setUser] = useState(null);
   const [isOnboardingComplete, setIsOnboardingComplete] = useState(null);
@@ -36,6 +36,7 @@ export const UserProvider = ({ children }) => {
           setFirstName(userSnapshot.data().firstName);
           setLastName(userSnapshot.data().lastName);
           setUsername(userSnapshot.data().username);
+          setRank(userSnapshot.data().rank);
           setUser(user);
           setUserEmail(user.email);
           setIsOnboardingComplete(userSnapshot.data().isOnboardingComplete);
@@ -64,6 +65,7 @@ export const UserProvider = ({ children }) => {
         coins,
         uid,
         username,
+        rank,
         loading,
         setLoading,
         isOnboardingComplete,
