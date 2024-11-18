@@ -7,7 +7,9 @@ import headshot from "../media/headshot.jpg";
 import "./Header.scss";
 
 const Header = () => {
-  const { coins, loading, rank } = useContext(UserContext);
+  const { coins, loading, rank, username } = useContext(UserContext);
+
+
 
   return (
     <header>
@@ -26,17 +28,24 @@ const Header = () => {
             </nav>
           ) : (
             <div className="user-header-container">
-              <div className="rank-wrap">{rank}</div>
+              <div className="rank-wrap">
+                <i class="fa-solid fa-certificate"></i>
+                {rank}
+              </div>
               <div className="coin-wrap">
-              <i class="fa-solid fa-wallet"></i>
-                <div className="coins"></div>
+                <i
+                  class={`fa-solid fa-wallet`}
+                ></i>
+
                 {coins}
               </div>
 
-              <div
-                className="avatar-circle"
-                style={{ backgroundImage: `url(${headshot})` }}
-              ></div>
+              <Link to={`/${username}`}>
+                <div
+                  className="avatar-circle"
+                  style={{ backgroundImage: `url(${headshot})` }}
+                ></div>
+              </Link>
 
               {/*<p
                 onClick={async () => {

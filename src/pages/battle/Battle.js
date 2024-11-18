@@ -21,6 +21,7 @@ const Battle = ({}) => {
     getBattle();
     getEntries();
     getUsers();
+
   }, [battleId]);
 
   const { isRewardModalVisible, setIsRewardModalVisible } =
@@ -93,6 +94,7 @@ const Battle = ({}) => {
         )}
         <Header />
         <div className="page-container">
+          
           <div className="page-header">
             <div>
               <Outlet />
