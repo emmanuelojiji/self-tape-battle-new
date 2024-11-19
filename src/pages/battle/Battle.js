@@ -9,6 +9,7 @@ import EntryCard from "../../components/EntryCard";
 import RewardModal from "../../components/RewardModal";
 import { RewardModalContext } from "../../contexts/RewardModalContext";
 import { UserContext } from "../../contexts/UserContext";
+import StoryModal from "../../components/StoryModal";
 
 const Battle = ({}) => {
   const { battleId } = useParams();
@@ -32,6 +33,9 @@ const Battle = ({}) => {
   const [allUsers, setAllUsers] = useState([]);
   const [battleStatus, setBattleStatus] = useState(null);
   const [uploadModalVisible, setUploadModalVisible] = useState(false);
+  const [isStoryModalVisible, setIsStoryModalVisible] = useState(false);
+
+  const [infoViewed, setInfoViewed] = useState(false);
 
   const battleDoc = doc(db, "battles", battleId);
 
@@ -90,6 +94,13 @@ const Battle = ({}) => {
 
   return (
     <>
+      {isStoryModalVisible && (
+        <StoryModal
+          prize={prize}
+          closeModal={() => setIsStoryModalVisible(false)}
+          infoViewed={infoViewed}
+        />
+      )}
       {isRewardModalVisible && (
         <RewardModal closeModal={() => setIsRewardModalVisible(false)} />
       )}
@@ -102,25 +113,41 @@ const Battle = ({}) => {
         )}
         <Header />
         <div className="page-container">
+          <Outlet />
           <div className="page-header">
             <div>
-              <Outlet />
               <h1 className="page-title">{title}</h1>
               <p>
                 <b>{prize}</b>
               </p>
             </div>
 
-            {battleStatus === "open" && (
-              <button
-                onClick={() => setUploadModalVisible(true)}
-                className="button"
+            <div className="page-header-right">
+              <div
+                className="attachment-button"
+                onClick={() => {
+                  setIsStoryModalVisible(true);
+
+                  setTimeout(() => {
+                    setInfoViewed(true);
+                  }, 5000);
+                }}
               >
-                {entries.find((entry) => entry.uid === uid)
-                  ? "Joined"
-                  : "Join Battle"}
-              </button>
-            )}
+                ?
+              </div>
+              <div className="question-button">?</div>
+
+              {battleStatus === "open" && (
+                <button
+                  onClick={() => setUploadModalVisible(true)}
+                  className="button"
+                >
+                  {entries.find((entry) => entry.uid === uid)
+                    ? "Joined"
+                    : "Join Battle"}
+                </button>
+              )}
+            </div>
           </div>
           <div className="entry-grid">
             {entries.map((entry) => (
