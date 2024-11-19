@@ -21,7 +21,6 @@ const Battle = ({}) => {
     getBattle();
     getEntries();
     getUsers();
-
   }, [battleId]);
 
   const { isRewardModalVisible, setIsRewardModalVisible } =
@@ -31,6 +30,7 @@ const Battle = ({}) => {
   const [prize, setPrize] = useState("");
   const [entries, setEntries] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
+  const [battleStatus, setBattleStatus] = useState(null);
   const [uploadModalVisible, setUploadModalVisible] = useState(false);
 
   const battleDoc = doc(db, "battles", battleId);
@@ -40,6 +40,14 @@ const Battle = ({}) => {
       const battleScreenshot = await getDoc(battleDoc);
       setTitle(battleScreenshot.data().name);
       setPrize(battleScreenshot.data().prize);
+
+      if (battleScreenshot.data().deadline > Date.now()) {
+        setBattleStatus("open");
+      } else {
+        setBattleStatus("closed");
+      }
+
+      console.log(battleScreenshot.data().deadline > Date.now());
     } catch {
       console.log("Sorry we couldn't get this!");
     }
@@ -94,7 +102,6 @@ const Battle = ({}) => {
         )}
         <Header />
         <div className="page-container">
-          
           <div className="page-header">
             <div>
               <Outlet />
@@ -104,14 +111,16 @@ const Battle = ({}) => {
               </p>
             </div>
 
-            <button
-              onClick={() => setUploadModalVisible(true)}
-              className="button"
-            >
-              {entries.find((entry) => entry.uid === uid)
-                ? "Joined"
-                : "Join Battle"}
-            </button>
+            {battleStatus === "open" && (
+              <button
+                onClick={() => setUploadModalVisible(true)}
+                className="button"
+              >
+                {entries.find((entry) => entry.uid === uid)
+                  ? "Joined"
+                  : "Join Battle"}
+              </button>
+            )}
           </div>
           <div className="entry-grid">
             {entries.map((entry) => (
