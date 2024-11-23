@@ -9,8 +9,6 @@ import "./Header.scss";
 const Header = () => {
   const { coins, loading, rank, username } = useContext(UserContext);
 
-
-
   return (
     <header>
       <Link to="/">
@@ -33,9 +31,7 @@ const Header = () => {
                 {rank}
               </div>
               <div className="coin-wrap">
-                <i
-                  class={`fa-solid fa-wallet`}
-                ></i>
+                <i class={`fa-solid fa-wallet`}></i>
 
                 {coins}
               </div>
