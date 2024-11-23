@@ -108,7 +108,7 @@ const VideoModal = () => {
         <div className="video-modal-header">
           <div className="video-modal-header-right">
             <h3>
-              <Link to={`:/${username}`}>
+              <Link to={`/${username}`}>
                 {firstName} {lastName}
               </Link>
             </h3>
