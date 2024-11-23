@@ -68,7 +68,7 @@ const Battle = ({}) => {
   const getEntries = async () => {
     try {
       const entriesCollection = collection(db, "battles", battleId, "entries");
-      const q = query(entriesCollection, orderBy("votes"));
+      const q = query(entriesCollection, orderBy("votes", "desc"));
       const entriesSnapshot = await getDocs(q);
 
       const entriesArray = [];
