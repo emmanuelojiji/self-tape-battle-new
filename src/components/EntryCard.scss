@@ -29,3 +29,28 @@
   justify-content: center;
   align-items: center;
 }
+
+.avatar-circle {
+  background-color: rgb(214, 214, 214);
+}
+
+.user-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.avatar-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.winner-pill {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: gold;
+  border-radius: 500px;
+  padding: 5px 20px;
+}

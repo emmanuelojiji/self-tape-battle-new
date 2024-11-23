@@ -57,14 +57,17 @@ header {
   // padding: 10px 20px;
 }
 .coin-wrap {
-  background: rgba(255, 197, 110, 0.2);
-  color: #ff9e0b;
+  background: rgb(238, 255, 0);
+  color: #5d3a06;
 }
 
 .rank-wrap {
-  background: rgba(154, 110, 255, 0.2);
+  background: rgba(154, 110, 255, 1);
   height: 100%;
   padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  color: black;
 }
 
 .user-header-skeleton {

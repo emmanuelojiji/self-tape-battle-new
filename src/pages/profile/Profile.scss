@@ -8,14 +8,22 @@
   background: grey;
 }
 
-
-.user-info{
-    margin-left: 30px;
+.user-info {
+  margin-left: 30px;
 }
 
-.veteran{
+.name-rank-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.veteran {
   background: aqua;
   padding: 5px 12px;
   border-radius: 50px;
   display: inline;
+}
+
+.entry-grid{
+  margin-top: 50px;
 }

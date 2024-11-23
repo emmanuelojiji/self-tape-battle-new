@@ -26,3 +26,19 @@
   font-size: 16px;
   border-radius: 50px;
 }
+
+.page-header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.page-header-action-button {
+  background: rgb(201, 201, 201);
+  height: 35px;
+  width: 35px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
