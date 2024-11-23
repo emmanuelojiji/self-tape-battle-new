@@ -6,7 +6,9 @@ const BattleCard = ({ title, prize, bg, id, amountOfEntrees }) => {
     <Link to={`/battles/${id}`}>
       <div className="battle-card">
         <div className="img-container">
-          <div className="entries-pill">{amountOfEntrees} Fighters</div>
+          <div className="entries-pill">{`${amountOfEntrees} ${
+            amountOfEntrees > 1 ? "Fighters" : "Fighter"
+          }`}</div>
           <img src={bg} />
         </div>
         <h3>{title}</h3>
