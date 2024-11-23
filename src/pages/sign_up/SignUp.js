@@ -28,6 +28,7 @@ const SignUp = () => {
         bio: "",
         webLink: "",
         email: auth.currentUser.email,
+        rank: "newbie",
         coins: 1,
       });
 
