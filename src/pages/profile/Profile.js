@@ -11,7 +11,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import { UserContext } from "../../contexts/UserContext";
-import { db } from "../../firebase";
+import { db, auth } from "../../firebase";
 import "./Profile.scss";
 import EntryCard from "../../components/EntryCard";
 
@@ -84,15 +84,18 @@ const Profile = () => {
           <div className="profile-header">
             <div className="headshot"></div>
             <div className="user-info">
-              <h1>
-                {firstName} {lastName}
-              </h1>
-              <div className={`rank-pill ${rank}`}>{rank}</div>
+              <div className="name-rank-wrap">
+                <h1>
+                  {firstName} {lastName}
+                </h1>
+                <div className={`rank-pill ${rank}`}>{rank}</div>
+              </div>
               <p>{username}</p>
               <p>{bio}</p>
               <a href={webLink} target="_blank">
                 {webLink}
               </a>
+              <p onClick={() => auth.signOut()}>Log out</p>
             </div>
           </div>
           <div className="entry-grid">
