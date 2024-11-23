@@ -9,6 +9,7 @@ const EntryCard = ({
   lastName,
   page,
   battleId,
+  winner,
 }) => {
   return (
     <>
@@ -17,12 +18,18 @@ const EntryCard = ({
           <div className="video-container">
             <video src={src} onContextMenu={(e) => e.preventDefault()} />
             <div className="play-button">play</div>
+            {winner && <div className="winner-pill">Winner</div>}
           </div>
+          <div className="user-container">
+            <div className="avatar-name-wrap">
+              <div className="avatar-circle"></div>
+              <h3>
+                {firstName} {lastName}
+              </h3>
+            </div>
 
-          <h3>
-            {firstName} {lastName}
-          </h3>
-          <p>{votes.length} Votes</p>
+            <p>{votes.length} Votes</p>
+          </div>
         </div>
       </Link>
     </>
