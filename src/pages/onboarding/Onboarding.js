@@ -28,7 +28,7 @@ const Onboarding = () => {
         lastName: lastName,
         bio: bio,
         webLink: webLink,
-        onboarding_complete: true,
+        isOnboardingComplete: true,
       });
 
       navigate("/battles");
