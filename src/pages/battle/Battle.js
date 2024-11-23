@@ -3,7 +3,15 @@ import Header from "../../components/Header";
 import { Outlet, useParams } from "react-router-dom";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { db, storage } from "../../firebase";
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  setDoc,
+} from "firebase/firestore";
 import UploadModal from "../../components/UploadModal";
 import EntryCard from "../../components/EntryCard";
 import RewardModal from "../../components/RewardModal";
@@ -60,7 +68,8 @@ const Battle = ({}) => {
   const getEntries = async () => {
     try {
       const entriesCollection = collection(db, "battles", battleId, "entries");
-      const entriesSnapshot = await getDocs(entriesCollection);
+      const q = query(entriesCollection, orderBy("votes"));
+      const entriesSnapshot = await getDocs(q);
 
       const entriesArray = [];
       entriesSnapshot.forEach((doc) => {
@@ -124,7 +133,7 @@ const Battle = ({}) => {
 
             <div className="page-header-right">
               <div
-                className="attachment-button"
+                className="page-header-action-button"
                 onClick={() => {
                   setIsStoryModalVisible(true);
 
@@ -135,12 +144,13 @@ const Battle = ({}) => {
               >
                 ?
               </div>
-              <div className="question-button">?</div>
+              <div className="page-header-action-button">?</div>
 
               {battleStatus === "open" && (
                 <button
                   onClick={() => setUploadModalVisible(true)}
                   className="button"
+                  disabled={entries.find((entry) => entry.uid === uid)}
                 >
                   {entries.find((entry) => entry.uid === uid)
                     ? "Joined"
@@ -160,9 +170,13 @@ const Battle = ({}) => {
                 firstName={
                   allUsers.find((user) => user.uid === entry.uid)?.firstName
                 }
+                lastName={
+                  allUsers.find((user) => user.uid === entry.uid)?.lastName
+                }
                 onClick={() => {
                   console.log(chosenVideo);
                 }}
+                winner={entry.uid === entries[0].uid}
               />
             ))}
           </div>
