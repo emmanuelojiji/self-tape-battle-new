@@ -12,6 +12,7 @@ import Profile from "./pages/profile/Profile";
 import { useState } from "react";
 import { RewardModalProvider } from "./contexts/RewardModalContext";
 import ProtectedRoute from "./ProtectedRoute";
+import Wallet from "./pages/wallet/Wallet";
 
 function App() {
   return (
@@ -53,6 +54,8 @@ function App() {
                   element={<VideoModal />}
                 />
               </Route>
+
+              <Route path="/wallet" element={<Wallet />} />
 
               <Route path="/onboarding" element={<Onboarding />} />
             </Routes>
