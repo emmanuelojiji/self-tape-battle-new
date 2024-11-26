@@ -14,6 +14,7 @@ export const UserProvider = ({ children }) => {
   const [username, setUsername] = useState(null);
   const [coins, setCoins] = useState(null);
   const [rank, setRank] = useState("");
+  const [headshot, setHeadshot] = useState("");
   const [uid, setUID] = useState(null);
   const [user, setUser] = useState(null);
   const [isOnboardingComplete, setIsOnboardingComplete] = useState(null);
@@ -39,6 +40,7 @@ export const UserProvider = ({ children }) => {
           setRank(userSnapshot.data().rank);
           setUser(user);
           setUserEmail(user.email);
+          setHeadshot(userSnapshot.data().headshot);
           setIsOnboardingComplete(userSnapshot.data().isOnboardingComplete);
         } catch (error) {
           console.log("Couldn't get document!", error);
@@ -66,6 +68,7 @@ export const UserProvider = ({ children }) => {
         uid,
         username,
         rank,
+        headshot,
         loading,
         setLoading,
         isOnboardingComplete,

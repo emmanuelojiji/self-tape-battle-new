@@ -7,7 +7,7 @@ import headshot from "../media/headshot.jpg";
 import "./Header.scss";
 
 const Header = () => {
-  const { coins, loading, rank, username } = useContext(UserContext);
+  const { coins, loading, rank, username, headshot } = useContext(UserContext);
 
   return (
     <header>
