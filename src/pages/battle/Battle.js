@@ -173,7 +173,7 @@ const Battle = ({}) => {
                 <EntryCard
                   battleId={battleId}
                   src={entry.url}
-                  votes={entry.votes}
+                  votes={entry.votes.length}
                   uid={entry.uid}
                   page="battles"
                   firstName={user.firstName}
