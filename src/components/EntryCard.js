@@ -10,6 +10,7 @@ const EntryCard = ({
   page,
   battleId,
   winner,
+  headshot
 }) => {
   return (
     <>
@@ -24,7 +25,9 @@ const EntryCard = ({
           </div>
           <div className="user-container">
             <div className="avatar-name-wrap">
-              <div className="avatar-circle"></div>
+              <div className="avatar-circle">
+                <img src={headshot} />
+              </div>
               <h3>
                 {firstName} {lastName}
               </h3>

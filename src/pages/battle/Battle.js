@@ -101,6 +101,8 @@ const Battle = ({}) => {
 
   const [chosenVideo, setChosenVideo] = useState();
 
+  let user;
+
   return (
     <>
       {isStoryModalVisible && (
@@ -163,25 +165,27 @@ const Battle = ({}) => {
             </div>
           </div>
           <div className="entry-grid">
-            {entries.map((entry) => (
-              <EntryCard
-                battleId={battleId}
-                src={entry.url}
-                votes={entry.votes}
-                uid={entry.uid}
-                page="battles"
-                firstName={
-                  allUsers.find((user) => user.uid === entry.uid)?.firstName
-                }
-                lastName={
-                  allUsers.find((user) => user.uid === entry.uid)?.lastName
-                }
-                onClick={() => {
-                  console.log(chosenVideo);
-                }}
-                winner={entry.uid === entries[0].uid}
-              />
-            ))}
+            {entries.map((entry) => {
+              if (allUsers) {
+                user = allUsers.find((user) => user.uid === entry.uid);
+              }
+              return (
+                <EntryCard
+                  battleId={battleId}
+                  src={entry.url}
+                  votes={entry.votes}
+                  uid={entry.uid}
+                  page="battles"
+                  firstName={user.firstName}
+                  lastName={user.lastName}
+                  headshot={user.headshot}
+                  onClick={() => {
+                    console.log(chosenVideo);
+                  }}
+                  winner={entry.uid === entries[0].uid}
+                />
+              );
+            })}
           </div>
         </div>
       </div>

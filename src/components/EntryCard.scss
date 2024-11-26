@@ -33,6 +33,10 @@
 
 .avatar-circle {
   background-color: rgb(214, 214, 214);
+  img {
+    width: 100%;
+    border-radius: inherit;
+  }
 }
 
 .user-container {
