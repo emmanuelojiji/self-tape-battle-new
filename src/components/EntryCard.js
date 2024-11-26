@@ -17,7 +17,9 @@ const EntryCard = ({
         <div className="EntryCard">
           <div className="video-container">
             <video src={src} onContextMenu={(e) => e.preventDefault()} />
-            <div className="play-button">play</div>
+            <div className="play-button">
+              <i class="fa-solid fa-play"></i>
+            </div>
             {winner && <div className="winner-pill">Winner</div>}
           </div>
           <div className="user-container">
@@ -28,7 +30,7 @@ const EntryCard = ({
               </h3>
             </div>
 
-            <p>{votes.length} Votes</p>
+            <p>{votes} Votes</p>
           </div>
         </div>
       </Link>
