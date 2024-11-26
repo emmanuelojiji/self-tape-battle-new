@@ -127,6 +127,7 @@ const Battle = ({}) => {
             <div>
               <h1 className="page-title">{title}</h1>
               <p>
+                <i class="fa-solid fa-gift"></i>
                 <b>{prize}</b>
               </p>
             </div>
@@ -142,9 +143,11 @@ const Battle = ({}) => {
                   }, 5000);
                 }}
               >
-                ?
+                <i class="fa-solid fa-question"></i>
               </div>
-              <div className="page-header-action-button">?</div>
+              <div className="page-header-action-button">
+                <i class="fa-solid fa-paperclip"></i>
+              </div>
 
               {battleStatus === "open" && (
                 <button
