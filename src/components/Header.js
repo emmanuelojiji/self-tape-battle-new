@@ -30,11 +30,13 @@ const Header = () => {
                 <i class="fa-solid fa-certificate"></i>
                 {rank}
               </div>
-              <div className="coin-wrap">
-                <i class={`fa-solid fa-wallet`}></i>
-
-                {coins}
-              </div>
+              <Link to="/wallet">
+                <div className="coin-wrap">
+                  {" "}
+                  <i class={`fa-solid fa-wallet`}></i>
+                  {coins}
+                </div>{" "}
+              </Link>
 
               <Link to={`/${username}`}>
                 <div

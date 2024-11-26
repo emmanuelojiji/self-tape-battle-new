@@ -12,8 +12,8 @@ const Landing = () => {
     <>
       <Header />
       <section className="billboard">
-        <h1>Battle for fame</h1>
-        <Link to={user ? "/battles" : "/signup"}>
+        <h1>FIGHT TO BE SEEN</h1>
+        <Link to="/battles">
           <button>Start Battling</button>
         </Link>
       </section>
