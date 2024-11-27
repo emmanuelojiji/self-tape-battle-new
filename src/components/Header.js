@@ -32,10 +32,10 @@ const Header = () => {
               </div>
               <Link to="/wallet">
                 <div className="coin-wrap">
-                  {" "}
-                  <i class={`fa-solid fa-wallet`}></i>
+             
+                  <i class="fa-solid fa-coins"></i>
                   {coins}
-                </div>{" "}
+                </div>
               </Link>
 
               <Link to={`/${username}`}>

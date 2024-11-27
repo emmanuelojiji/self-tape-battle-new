@@ -1,6 +1,6 @@
 import "./Battle.scss";
 import Header from "../../components/Header";
-import { Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { db, storage } from "../../firebase";
 import {
@@ -112,7 +112,6 @@ const Battle = ({}) => {
     } else {
       setButtonDisabled(false);
     }
-
   });
 
   return (
@@ -138,10 +137,12 @@ const Battle = ({}) => {
         <div className="page-container">
           <Outlet voters={voters} />
           <div className="page-header">
-            <div>
+            <div className="page-header-left">
+              <Link to="/battles">Back to Arena</Link>
               <h1 className="page-title">{title}</h1>
               <p>
                 <i class="fa-solid fa-gift"></i>
+
                 <b>{prize}</b>
               </p>
             </div>

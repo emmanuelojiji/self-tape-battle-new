@@ -10,14 +10,18 @@ const EntryCard = ({
   page,
   battleId,
   winner,
-  headshot
+  headshot,
 }) => {
   return (
     <>
       <Link to={`/${page}/${battleId}/${uid}`}>
         <div className="EntryCard">
           <div className="video-container">
-            <video src={src} onContextMenu={(e) => e.preventDefault()} />
+            <video
+              src={src}
+              onContextMenu={(e) => e.preventDefault()}
+              className={winner ? "winner" : null}
+            />
             <div className="play-button">
               <i class="fa-solid fa-play"></i>
             </div>
