@@ -1,6 +1,60 @@
+.SignUp {
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  //background: brown;
+
+  h1 {
+    font-size: 50px;
+    text-align: center;
+  }
+
+  p {
+    margin-bottom: 25px;
+  }
+}
+
 .sign-up-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 1;
+}
+
+.sign-up-container {
+  // background: brown;
+  display: flex;
+  height: 100%;
+}
+
+.sign-up-left {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.sign-up-right {
+  width: 50%;
+  background: black;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px;
+  align-items: center;
+
+  button {
+    width: 100%;
+    border-radius: 3px;
+
+  }
 }
