@@ -18,7 +18,7 @@ const EntryCard = ({
         <div className="EntryCard">
           <div className="video-container">
             <video
-              src={src}
+              src={src + "#t=0.001"}
               onContextMenu={(e) => e.preventDefault()}
               className={winner ? "winner" : null}
             />
