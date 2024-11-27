@@ -28,6 +28,7 @@ const VideoModal = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
+  const [voters, setVoters] = useState([]);
   // Calculate userHasVoted based on votes array and uid
   const userHasVoted = useMemo(() => votes.includes(uid), [votes, uid]);
 
@@ -63,6 +64,12 @@ const VideoModal = () => {
           setFirstName(userSnapshot.data().firstName);
           setLastName(userSnapshot.data().lastName);
           setUsername(userSnapshot.data().username);
+
+          const battleRef = doc(db, "battles", battleId);
+          const votersSnapshot = await getDoc(battleRef);
+
+          setVoters(votersSnapshot.data().voters);
+          console.log(voters);
         } catch (error) {
           console.error("Cannot get entry", error);
         } finally {
@@ -87,12 +94,20 @@ const VideoModal = () => {
         const userSnapshot = await getDoc(userRef);
 
         await updateDoc(userRef, {
-          coins: userSnapshot.data().coins + 1,
+          coins: !voters.includes(uid)
+            ? userSnapshot.data().coins + 1
+            : userSnapshot.data().coins + 0,
         });
 
         setTitle("Your vote is in!");
-        setCoinsEarned(1);
+
         setIsRewardModalVisible(true);
+
+        if (!voters.includes(uid)) {
+          setCoinsEarned(1);
+        } else {
+          setCoinsEarned(0);
+        }
       } catch (error) {
         console.error("Error handling vote", error);
       }

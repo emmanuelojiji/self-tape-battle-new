@@ -1,27 +1,24 @@
 Voting System
 
-- Users can only join a battle after they have voted for someone elses' entry 
+- Users can only join a battle after they have voted for someone elses' entry
 - Users can vote for multiple entries in a battle
 - Users will only receive 1 coin regardless of how many entries they vote for in a particular battles
 
------------------
-  - Create voters field (array) in Battle document. 
-        Voters: ["uid", "uid, "uid"]
-        
+---
 
-------------------
+- Create voters field (array) in Battle document.
+  Voters: ["uid", "uid, "uid"]
 
-* Users can only join a battle after they have voted for someone elses' entry *
+---
 
-- On join: Check if user is included in that array.
-    - If yes: Go ahead with voting mechanism 
-    - If no: Alert: You must vote for someone else's entry before joining 
+- Users can only join a battle after they have voted for someone elses' entry \*
 
+* On join: Check if user is included in that array.
+  - If yes: Go ahead with voting mechanism
+  - If no: Alert: You must vote for someone else's entry before joining
 
------------------
+---
 
 Users will only receive 1 coin regardless of how many entries they vote for in a particular battle
 
 coins: isInVotersArray ? coins + 0 : coins + 1
-
-

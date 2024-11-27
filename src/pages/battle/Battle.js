@@ -112,9 +112,7 @@ const Battle = ({}) => {
     } else {
       setButtonDisabled(false);
     }
-    console.log(buttonDisabled);
 
-    console.log(!voters.includes(uid)); //false - If the user hasn't voted already, the button should be disabled
   });
 
   return (
@@ -138,7 +136,7 @@ const Battle = ({}) => {
         )}
         <Header />
         <div className="page-container">
-          <Outlet />
+          <Outlet voters={voters} />
           <div className="page-header">
             <div>
               <h1 className="page-title">{title}</h1>
