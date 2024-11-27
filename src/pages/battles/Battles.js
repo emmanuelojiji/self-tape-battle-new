@@ -7,6 +7,7 @@ import lion_king from "../../media/lion_king.jpeg";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useEffect, useState } from "react";
+import Nav from "../../components/Nav";
 
 const Battles = () => {
   useEffect(() => {
@@ -33,6 +34,7 @@ const Battles = () => {
   return (
     <>
       <Header />
+      <Nav/>
       <div className="page-container">
         <div className="page-header">
           <h1 className="page-title">CHOOSE YOUR BATTLE</h1>

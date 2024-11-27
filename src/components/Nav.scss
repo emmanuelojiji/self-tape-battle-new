@@ -1,0 +1,20 @@
+nav {
+  width: 100%;
+  background: grey;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  padding-left: 2%;
+  display: none;
+  
+  @media screen and (max-width:500px) {
+    display: flex;
+  }
+
+  a {
+    color: white;
+  }
+}

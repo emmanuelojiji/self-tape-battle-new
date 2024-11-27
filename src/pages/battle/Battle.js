@@ -18,6 +18,7 @@ import RewardModal from "../../components/RewardModal";
 import { RewardModalContext } from "../../contexts/RewardModalContext";
 import { UserContext } from "../../contexts/UserContext";
 import StoryModal from "../../components/StoryModal";
+import Nav from "../../components/Nav";
 
 const Battle = ({}) => {
   const { battleId } = useParams();
@@ -116,6 +117,7 @@ const Battle = ({}) => {
 
   return (
     <>
+      <Nav />
       {isStoryModalVisible && (
         <StoryModal
           prize={prize}

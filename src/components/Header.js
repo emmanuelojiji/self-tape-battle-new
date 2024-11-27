@@ -26,6 +26,7 @@ const Header = () => {
             </nav>
           ) : (
             <div className="user-header-container">
+              <Link to="/battles">Arena</Link>
               <div className="rank-wrap">
                 <i class="fa-solid fa-certificate"></i>
                 {rank}
