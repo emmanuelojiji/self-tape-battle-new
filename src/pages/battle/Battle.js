@@ -42,6 +42,8 @@ const Battle = ({}) => {
   const [battleStatus, setBattleStatus] = useState(null);
   const [uploadModalVisible, setUploadModalVisible] = useState(false);
   const [isStoryModalVisible, setIsStoryModalVisible] = useState(false);
+  const [voters, setVoters] = useState([]);
+  const [buttonDisabled, setButtonDisabled] = useState(null);
 
   const [infoViewed, setInfoViewed] = useState(false);
 
@@ -52,6 +54,7 @@ const Battle = ({}) => {
       const battleScreenshot = await getDoc(battleDoc);
       setTitle(battleScreenshot.data().name);
       setPrize(battleScreenshot.data().prize);
+      setVoters(battleScreenshot.data().voters);
 
       if (battleScreenshot.data().deadline > Date.now()) {
         setBattleStatus("open");
@@ -102,6 +105,17 @@ const Battle = ({}) => {
   const [chosenVideo, setChosenVideo] = useState();
 
   let user;
+
+  useEffect(() => {
+    if (entries.find((entry) => entry.uid === uid) || !voters.includes(uid)) {
+      setButtonDisabled(true);
+    } else {
+      setButtonDisabled(false);
+    }
+    console.log(buttonDisabled);
+
+    console.log(!voters.includes(uid)); //false - If the user hasn't voted already, the button should be disabled
+  });
 
   return (
     <>
@@ -154,12 +168,18 @@ const Battle = ({}) => {
               {battleStatus === "open" && (
                 <button
                   onClick={() => setUploadModalVisible(true)}
-                  className="button"
-                  disabled={entries.find((entry) => entry.uid === uid)}
+                  className={`button ${
+                    buttonDisabled ? "disabled" : "enabled"
+                  }`}
+                  disabled={buttonDisabled}
                 >
-                  {entries.find((entry) => entry.uid === uid)
-                    ? "Joined"
-                    : "Join Battle"}
+                  {entries.find((entry) => entry.uid === uid) ? (
+                    <>
+                      Joined <i class="fa-solid fa-check"></i>
+                    </>
+                  ) : (
+                    "Join Battle"
+                  )}
                 </button>
               )}
             </div>

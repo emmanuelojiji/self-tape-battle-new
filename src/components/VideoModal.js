@@ -20,6 +20,8 @@ const VideoModal = () => {
 
   const entryRef = doc(db, "battles", battleId, "entries", uploadUid);
 
+  const battleRef = doc(db, "battles", battleId);
+
   const [url, setUrl] = useState("");
   const [votes, setVotes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -77,8 +79,13 @@ const VideoModal = () => {
           votes: arrayUnion(uid),
         });
 
+        await updateDoc(battleRef, {
+          voters: arrayUnion(uid),
+        });
+
         const userRef = doc(db, "users", uid);
         const userSnapshot = await getDoc(userRef);
+
         await updateDoc(userRef, {
           coins: userSnapshot.data().coins + 1,
         });
