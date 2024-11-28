@@ -197,9 +197,9 @@ const Battle = ({}) => {
                   votes={entry.votes.length}
                   uid={entry.uid}
                   page="battles"
-                  firstName={user.firstName}
-                  lastName={user.lastName}
-                  headshot={user.headshot}
+                  firstName={user?.firstName}
+                  lastName={user?.lastName}
+                  headshot={user?.headshot}
                   onClick={() => {
                     console.log(chosenVideo);
                   }}
