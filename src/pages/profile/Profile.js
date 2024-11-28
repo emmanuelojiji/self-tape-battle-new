@@ -94,7 +94,7 @@ const Profile = () => {
                 <h1>
                   {firstName} {lastName}
                 </h1>
-                <div className={`rank-pill ${rank}`}>{rank}</div>
+                <div className={`rank-wrap ${rank}`}>{rank}</div>
               </div>
               <p>{username}</p>
               <p>{bio}</p>
