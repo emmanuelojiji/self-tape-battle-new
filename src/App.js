@@ -62,6 +62,7 @@ function App() {
             </Routes>
             <Nav/>
           </BrowserRouter>
+       
         </RewardModalProvider>
       </UserProvider>
     </>

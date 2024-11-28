@@ -9,8 +9,8 @@ const Nav = () => {
 
   return (
     <nav className="in-game-nav">
-      <Link to="/battles">Home</Link>
-      <Link to="/wallet">Wallet</Link>
+      <Link to="/battles"><i class="fa-solid fa-landmark-dome"></i></Link>
+      <Link to="/wallet"><i class="fa-solid fa-wallet"></i></Link>
       <Link to={`/${username}`}>
         <div
           className="avatar-circle"
