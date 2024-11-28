@@ -10,6 +10,7 @@ import "./SignIn.scss";
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -33,28 +34,42 @@ const SignIn = () => {
 
   return (
     <>
-      <Header />
-      <form>
-        <h1>Sign In</h1>
-        <TextInput
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-        />
-        <TextInput
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button
-          onClick={(e) => {
-            handleSignIn();
-            e.preventDefault();
-          }}
-        >
-          Sign In
-        </button>
-        <Link to="/signup">Sign Up</Link>
-      </form>
+      <main className="SignIn">
+        <Header />
+        <div className="auth-container">
+          <div className="auth-left">
+            <h1 className="page-title">Welcome Back</h1>
+
+            <div className="form-container">
+              <TextInput
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+                error={error && !email && "Please enter an email"}
+              ></TextInput>
+              <TextInput
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                error={error && !password && "Please enter a password"}
+              ></TextInput>
+
+              <button
+                onClick={(e) => {
+                  if (email && password) {
+                    handleSignIn();
+                    e.preventDefault();
+                  } else {
+                    setError(true);
+                  }
+                }}
+              >
+                Sign In
+              </button>
+              <Link to="/signup">Sign up</Link>
+            </div>
+          </div>
+          <div className="sign-up-right">Right</div>
+        </div>
+      </main>
     </>
   );
 };

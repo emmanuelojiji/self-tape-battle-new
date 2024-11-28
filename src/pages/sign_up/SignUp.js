@@ -43,8 +43,8 @@ const SignUp = () => {
     <>
       <main className="SignUp">
         <Header />
-        <div className="sign-up-container">
-          <div className="sign-up-left">
+        <div className="auth-container">
+          <div className="auth-left">
             <h1 className="page-title">Join the Arena</h1>
             <p>5 other warriors are waiting for you..</p>
 
@@ -74,7 +74,7 @@ const SignUp = () => {
                     setError(true);
                   }
                 }}
-              >
+              > 
                 Sign Up
               </button>
               <Link to="/signin">Log In</Link>

@@ -1,4 +1,4 @@
-.SignUp {
+.SignUp, .SignIn {
   min-height: 100vh;
   height: 100vh;
   display: flex;
@@ -23,16 +23,16 @@
   flex: 1;
 }
 
-.sign-up-container {
+.auth-container {
   // background: brown;
   display: flex;
   height: 100%;
 }
 
-.sign-up-left {
+.auth-left {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
   align-items: center;
   justify-content: center;
   height: 100%;
@@ -41,8 +41,13 @@
 }
 
 .sign-up-right {
-  width: 50%;
+  width: 100%;
   background: black;
+
+
+  @media screen and (max-width: 868px) {
+    display: none;
+  }
 }
 
 .form-container {
