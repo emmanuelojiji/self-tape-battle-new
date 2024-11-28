@@ -11,6 +11,18 @@ header {
   h3 {
     color: black;
   }
+
+  .avatar-circle{
+    @media screen and (max-width: 500px) {
+      display: none;
+    }
+  }
+}
+
+.in-game-nav{
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 }
 
 .user-header-container {
@@ -27,8 +39,9 @@ header {
   width: 35px;
   border-radius: 100%;
   background-position: center;
-  background-size: cover;
+  background-size: cover;  
 }
+
 
 .logo {
   max-width: 120px;

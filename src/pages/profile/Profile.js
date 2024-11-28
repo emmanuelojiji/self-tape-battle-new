@@ -14,6 +14,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { db, auth } from "../../firebase";
 import "./Profile.scss";
 import EntryCard from "../../components/EntryCard";
+import Nav from "../../components/Nav";
 
 const Profile = () => {
   const { username } = useParams();
@@ -81,6 +82,7 @@ const Profile = () => {
     <>
       <Outlet />
       <Header />
+      <Nav/>
       <div className="Profile">
         <div className="page-container">
           <div className="profile-header">

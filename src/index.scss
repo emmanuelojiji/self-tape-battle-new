@@ -29,6 +29,10 @@ a {
   padding-left: 5%;
   padding-right: 5%;
   margin-top: 40px;
+
+  @media screen and (max-width: 868px) {
+  margin-top: 20px;
+  }
 }
 
 .page-title {
