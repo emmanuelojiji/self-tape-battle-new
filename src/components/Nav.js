@@ -4,7 +4,9 @@ import { UserContext } from "../contexts/UserContext";
 import "./Nav.scss";
 
 const Nav = () => {
+
   const { username, headshot } = useContext(UserContext);
+
   return (
     <nav className="in-game-nav">
       <Link to="/battles">Home</Link>

@@ -28,7 +28,7 @@ const Profile = () => {
   const [webLink, setWebLink] = useState("");
   const [entries, setEntries] = useState([]);
   const [rank, setRank] = useState("");
-  const [headshot, setHeadshot] = useState("")
+  const [headshot, setHeadshot] = useState("");
 
   useEffect(() => {
     getUser();
@@ -54,7 +54,7 @@ const Profile = () => {
       setWebLink(user.webLink);
       setUid(user.uid);
       setRank(user.rank);
-      setHeadshot(user.headshot)
+      setHeadshot(user.headshot);
     } catch (error) {
       console.log(error);
     }
@@ -82,12 +82,12 @@ const Profile = () => {
     <>
       <Outlet />
       <Header />
-      <Nav/>
+
       <div className="Profile">
         <div className="page-container">
           <div className="profile-header">
             <div className="headshot">
-              <img src={headshot}/>
+              <img src={headshot} />
             </div>
             <div className="user-info">
               <div className="name-rank-wrap">

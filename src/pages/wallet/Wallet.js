@@ -8,7 +8,7 @@ const Wallet = () => {
   return (
     <div className="Wallet">
       <Header />
-      <Nav/>
+   
       <div className="page-container">
         <h1>Wallet</h1>
         <h2>{coins} coins</h2>

@@ -34,7 +34,7 @@ const Battles = () => {
   return (
     <>
       <Header />
-      <Nav/>
+    
       <div className="page-container">
         <div className="page-header">
           <h1 className="page-title">CHOOSE YOUR BATTLE</h1>

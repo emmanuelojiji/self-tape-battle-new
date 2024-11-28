@@ -117,7 +117,7 @@ const Battle = ({}) => {
 
   return (
     <>
-      <Nav />
+    
       {isStoryModalVisible && (
         <StoryModal
           prize={prize}

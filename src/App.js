@@ -13,6 +13,7 @@ import { useState } from "react";
 import { RewardModalProvider } from "./contexts/RewardModalContext";
 import ProtectedRoute from "./ProtectedRoute";
 import Wallet from "./pages/wallet/Wallet";
+import Nav from "./components/Nav";
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
 
               <Route path="/onboarding" element={<Onboarding />} />
             </Routes>
+            <Nav/>
           </BrowserRouter>
         </RewardModalProvider>
       </UserProvider>
