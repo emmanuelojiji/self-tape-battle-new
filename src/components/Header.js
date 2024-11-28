@@ -26,29 +26,31 @@ const Header = () => {
             </nav>
           ) : (
             <>
-              <div className="in-game-nav">
-                <Link to="/battles">Arena</Link>
-              </div>
-              <div className="user-header-container">
-                <div className="rank-wrap">
-                  <i class="fa-solid fa-certificate"></i>
-                  {rank}
+              <div className="header-right">
+                <div className="in-game-nav">
+                  <Link to="/battles">Arena</Link>
+                  <Link to="/battles">Wallet</Link>
                 </div>
-                <Link to="/wallet">
-                  <div className="coin-wrap">
-                    <i class="fa-solid fa-coins"></i>
-                    {coins}
+                <div className="user-header-container">
+                  <div className="rank-wrap">
+                    <i class="fa-solid fa-certificate"></i>
+                    {rank}
                   </div>
-                </Link>
+                  <Link to="/wallet">
+                    <div className="coin-wrap">
+                      <i class="fa-solid fa-coins"></i>
+                      {coins}
+                    </div>
+                  </Link>
 
-                <Link to={`/${username}`}>
-                  <div
-                    className="avatar-circle"
-                    style={{ backgroundImage: `url(${headshot})` }}
-                  ></div>
-                </Link>
+                  <Link to={`/${username}`}>
+                    <div
+                      className="avatar-circle"
+                      style={{ backgroundImage: `url(${headshot})` }}
+                    ></div>
+                  </Link>
 
-                {/*<p
+                  {/*<p
                 onClick={async () => {
                   await auth.signOut();
                   navigate("/");
@@ -56,6 +58,7 @@ const Header = () => {
               >
                 Log out
               </p>*/}
+                </div>
               </div>
             </>
           )}
