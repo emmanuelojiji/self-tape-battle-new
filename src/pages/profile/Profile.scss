@@ -7,9 +7,10 @@
   }
 
   h1{
-    font-family: "Arupala Grotesk", sans-serif;
-    text-transform: uppercase;
+
+    margin-right: 10px;
   }
+
 }
 
 .headshot {
@@ -46,6 +47,23 @@
   @media screen and (max-width: 500px) {
   flex-direction: column;
   }
+}
+
+
+.username{
+  font-weight: bold;
+}
+
+.fa-user-tag{
+  margin-right: 3px;
+}
+
+.bio{
+  margin-top: 20px;
+}
+
+.web-link{
+  font-weight: bold;
 }
 
 

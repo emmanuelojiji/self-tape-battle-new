@@ -15,6 +15,7 @@ import { db, auth } from "../../firebase";
 import "./Profile.scss";
 import EntryCard from "../../components/EntryCard";
 import Nav from "../../components/Nav";
+import RankPill from "../../components/RankPill";
 
 const Profile = () => {
   const { username } = useParams();
@@ -78,6 +79,16 @@ const Profile = () => {
     }
   };
 
+  const linkColours = [
+    {
+      veteran: "rgba(247, 46, 15, 0.841)",
+    },
+  ];
+
+  useEffect(() => {
+    console.log(linkColours.includes(rank));
+  }, [rank]);
+
   return (
     <>
       <Outlet />
@@ -94,11 +105,14 @@ const Profile = () => {
                 <h1>
                   {firstName} {lastName}
                 </h1>
-                <div className={`rank-wrap ${rank}`}>{rank}</div>
+                <RankPill rank={rank} />
               </div>
-              <p>{username}</p>
-              <p>{bio}</p>
-              <a href={webLink} target="_blank">
+              <p className="username">
+                <i class="fa-solid fa-user-tag"></i>
+                {username}
+              </p>
+              <p className="bio">{bio}</p>
+              <a className={`web-link ${rank}`} href={webLink} target="_blank">
                 {webLink}
               </a>
               <p onClick={() => auth.signOut()}>Log out</p>

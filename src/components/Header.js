@@ -5,6 +5,7 @@ import { auth } from "../firebase";
 import logo from "../media/logo.svg";
 import headshot from "../media/headshot.jpg";
 import "./Header.scss";
+import RankPill from "./RankPill";
 
 const Header = () => {
   const { coins, loading, rank, username, headshot } = useContext(UserContext);
@@ -32,10 +33,7 @@ const Header = () => {
                   <Link to="/battles">Wallet</Link>
                 </div>
                 <div className="user-header-container">
-                  <div className="rank-wrap">
-                    <i class="fa-solid fa-certificate"></i>
-                    {rank}
-                  </div>
+                  <RankPill rank={rank}/>
                   <Link to="/wallet">
                     <div className="coin-wrap">
                       <i class="fa-solid fa-coins"></i>
