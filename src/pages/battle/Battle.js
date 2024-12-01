@@ -140,7 +140,7 @@ const Battle = ({}) => {
           <Outlet voters={voters} />
           <div className="page-header">
             <div className="page-header-left">
-              <Link to="/battles">Back to Arena</Link>
+              <Link to="/battles"><i class="fa-solid fa-arrow-left"></i></Link>
               <h1 className="page-title">{title}</h1>
               <p>
                 <i class="fa-solid fa-gift"></i>

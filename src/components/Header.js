@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <header>
       <Link to="/">
-        <h3>Self Tape Battle</h3>
+        <img src={logo} className="logo"/>
       </Link>
 
       {loading ? (

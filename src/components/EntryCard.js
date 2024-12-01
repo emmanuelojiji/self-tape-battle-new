@@ -28,16 +28,18 @@ const EntryCard = ({
             {winner && <div className="winner-pill">Winner</div>}
           </div>
           <div className="user-container">
-            <div className="avatar-name-wrap">
-              <div className="avatar-circle">
-                <img src={headshot} />
+            {headshot && (
+              <div className="avatar-name-wrap">
+                <div className="avatar-circle">
+                  <img src={headshot} />
+                </div>
+                <h3>
+                  {firstName} {lastName}
+                </h3>
               </div>
-              <h3>
-                {firstName} {lastName}
-              </h3>
-            </div>
+            )}
 
-            <p>{votes} Votes</p>
+            {votes && <p>{votes} Votes</p>}
           </div>
         </div>
       </Link>

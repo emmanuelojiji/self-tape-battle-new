@@ -37,7 +37,7 @@ const Battles = () => {
     
       <div className="page-container">
         <div className="page-header">
-          <h1 className="page-title">CHOOSE YOUR BATTLE</h1>
+          <h1 className="page-title">Join a battle</h1>
         </div>
         <div className="battle-grid">
           {battles.map((battle) => (
