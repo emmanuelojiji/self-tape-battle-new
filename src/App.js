@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import "./App.scss";
 import Battles from "./pages/battles/Battles";
 import Landing from "./pages/landing/Landing";
@@ -16,6 +16,7 @@ import Wallet from "./pages/wallet/Wallet";
 import Nav from "./components/Nav";
 
 function App() {
+
   return (
     <>
       <UserProvider>
@@ -60,9 +61,8 @@ function App() {
 
               <Route path="/onboarding" element={<Onboarding />} />
             </Routes>
-            <Nav/>
+            <Nav />
           </BrowserRouter>
-       
         </RewardModalProvider>
       </UserProvider>
     </>

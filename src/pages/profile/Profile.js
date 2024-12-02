@@ -148,7 +148,7 @@ const Profile = () => {
                   uid={entry.uid}
                   battleId={entry.battleId}
                   page={username}
-                  battleName={battle.name}
+                  battleName={battle?.name}
                 />
               );
             })}

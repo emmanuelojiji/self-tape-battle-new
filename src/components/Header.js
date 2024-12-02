@@ -28,9 +28,9 @@ const Header = () => {
           ) : (
             <>
               <div className="header-right">
-                <div className="in-game-nav">
+                <div>
                   <Link to="/battles">Arena</Link>
-                  <Link to="/battles">Wallet</Link>
+                  <Link to="/wallet">Wallet</Link>
                 </div>
                 <div className="user-header-container">
                   <RankPill rank={rank}/>

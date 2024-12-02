@@ -55,6 +55,7 @@ const Battle = ({}) => {
       const battleScreenshot = await getDoc(battleDoc);
       setTitle(battleScreenshot.data().name);
       setPrize(battleScreenshot.data().prize);
+
       setVoters(battleScreenshot.data().voters);
 
       if (battleScreenshot.data().deadline > Date.now()) {
@@ -117,7 +118,6 @@ const Battle = ({}) => {
 
   return (
     <>
-    
       {isStoryModalVisible && (
         <StoryModal
           prize={prize}
@@ -140,7 +140,10 @@ const Battle = ({}) => {
           <Outlet voters={voters} />
           <div className="page-header">
             <div className="page-header-left">
-              <Link to="/battles"><i class="fa-solid fa-arrow-left"></i></Link>
+              <Link to="/battles">
+                <i class="fa-solid fa-arrow-left"></i>
+              </Link>
+              <p>{battleStatus === "open" ? "Battle Open" : "Battle closed"}</p>
               <h1 className="page-title">{title}</h1>
               <p>
                 <i class="fa-solid fa-gift"></i>
