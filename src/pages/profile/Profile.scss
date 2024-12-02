@@ -1,16 +1,14 @@
 .profile-header {
   display: flex;
+  margin-bottom: 50px;
 
   @media screen and (max-width: 500px) {
     flex-direction: column;
-    align-items: center;
   }
 
-  h1{
-
+  h1 {
     margin-right: 10px;
   }
-
 }
 
 .headshot {
@@ -36,8 +34,8 @@
   margin-left: 30px;
 
   @media screen and (max-width: 500px) {
-    margin: 0;
-    text-align: center;
+    margin-left: 0;
+    margin-top: 10px;
   }
 }
 
@@ -45,29 +43,28 @@
   display: flex;
   align-items: center;
   @media screen and (max-width: 500px) {
-  flex-direction: column;
+    align-items: center;
   }
 }
 
 
-.username{
+
+.username {
   font-weight: bold;
 }
 
-.fa-user-tag{
+.fa-user-tag {
   margin-right: 3px;
 }
 
-.bio{
-  margin-top: 20px;
+.bio {
+  margin-top: 10px;
 }
 
-.web-link{
+.web-link {
   font-weight: bold;
 }
 
-
-
 .entry-grid {
-  margin-top: 50px;
+  margin-top: 25px;
 }

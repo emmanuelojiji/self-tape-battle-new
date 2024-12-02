@@ -135,6 +135,8 @@ const Profile = () => {
               <p onClick={() => auth.signOut()}>Log out</p>
             </div>
           </div>
+
+          <h2>Entries</h2>
           <div className="entry-grid">
             {entries.map((entry) => {
               const battle = battles.find(

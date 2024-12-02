@@ -20,6 +20,11 @@ h1 {
   line-height: 1;
   font-family: "Arupala Grotesk", sans-serif;
 }
+@media screen and (max-width: 500px) {
+  h1 {
+    font-size: 20px;
+  }
+}
 
 a {
   text-decoration: none;
