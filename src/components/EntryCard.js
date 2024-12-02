@@ -9,6 +9,7 @@ const EntryCard = ({
   lastName,
   page,
   battleId,
+  battleName,
   winner,
   headshot,
 }) => {
@@ -40,6 +41,7 @@ const EntryCard = ({
             )}
 
             {votes && <p>{votes} Votes</p>}
+            {battleName && <p>{battleName}</p>}
           </div>
         </div>
       </Link>

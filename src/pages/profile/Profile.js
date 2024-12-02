@@ -30,10 +30,12 @@ const Profile = () => {
   const [entries, setEntries] = useState([]);
   const [rank, setRank] = useState("");
   const [headshot, setHeadshot] = useState("");
+  const [battles, setBattles] = useState([]);
 
   useEffect(() => {
     getUser();
     getEntries();
+    getBattles();
   }, [uid, username]);
 
   const getUser = async () => {
@@ -58,6 +60,21 @@ const Profile = () => {
       setHeadshot(user.headshot);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const getBattles = async () => {
+    try {
+      const battlesRef = collection(db, "battles");
+      const battlesSnapshot = await getDocs(battlesRef);
+
+      const battlesArray = [];
+
+      battlesSnapshot.forEach((battle) => battlesArray.push(battle.data()));
+      setBattles(battlesArray);
+      console.log(battles);
+    } catch {
+      console.log("Couldn't get battle sorry ");
     }
   };
 
@@ -119,14 +136,20 @@ const Profile = () => {
             </div>
           </div>
           <div className="entry-grid">
-            {entries.map((entry) => (
-              <EntryCard
-                src={entry.url}
-                uid={entry.uid}
-                battleId={entry.battleId}
-                page={username}
-              />
-            ))}
+            {entries.map((entry) => {
+              const battle = battles.find(
+                (battle) => battle.id === entry.battleId
+              );
+              return (
+                <EntryCard
+                  src={entry.url}
+                  uid={entry.uid}
+                  battleId={entry.battleId}
+                  page={username}
+                  battleName={battle.name}
+                />
+              );
+            })}
           </div>
         </div>
       </div>

@@ -1,0 +1,12 @@
+.billboard {
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.billboard h1 {
+  font-size: 70px;
+  font-family: "Arupala Grotesk", sans-serif;
+}/*# sourceMappingURL=Landing.css.map */

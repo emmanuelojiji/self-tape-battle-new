@@ -1,0 +1,27 @@
+.reward-modal-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.544);
+  z-index: 2;
+}
+
+.RewardModal {
+  padding: 50px;
+  height: 300px;
+  width: 500px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 4px;
+}
+.RewardModal h3 {
+  font-family: "Arupala Grotesk", sans-serif;
+  font-size: 24px;
+}/*# sourceMappingURL=RewardModal.css.map */

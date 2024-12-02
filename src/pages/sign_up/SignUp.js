@@ -22,7 +22,7 @@ const SignUp = () => {
 
       await setDoc(userRef, {
         uid: auth.currentUser.uid,
-        onboarding_complete: false,
+        isOnboardingComplete: false,
         firstName: "",
         lastName: "",
         username: username,
