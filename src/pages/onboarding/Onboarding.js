@@ -21,31 +21,40 @@ const Onboarding = () => {
   const [file, setFile] = useState([]);
   const [filePreview, setFilePreview] = useState("");
 
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const updateField = (e, setter) => {
     setter(e.target.value);
   };
 
   const handleUpdateUser = async () => {
-    try {
-      const userRef = doc(db, "users", uid);
+    if (!firstName || !lastName || file.length === 0) {
+      setError(true);
+    } else {
+      try {
+        const userRef = doc(db, "users", uid);
 
-      const imageRef = ref(storage, `/headshots/${uid}`);
-      await uploadBytes(imageRef, file);
+        const imageRef = ref(storage, `/headshots/${uid}`);
+        await uploadBytes(imageRef, file);
 
-      const downloadUrl = await getDownloadURL(imageRef);
+        const downloadUrl = await getDownloadURL(imageRef);
 
-      await updateDoc(userRef, {
-        firstName: firstName,
-        lastName: lastName,
-        bio: bio,
-        webLink: webLink,
-        isOnboardingComplete: true,
-        headshot: downloadUrl,
-      });
+        setError("Please fill out all fields");
 
-      navigate("/battles");
-    } catch {
-      console.log("Couldn't update sorreh");
+        await updateDoc(userRef, {
+          firstName: firstName,
+          lastName: lastName,
+          bio: bio,
+          webLink: webLink,
+          isOnboardingComplete: true,
+          headshot: downloadUrl,
+        });
+
+        navigate("/battles");
+      } catch {
+        console.log("Couldn't update sorreh");
+      }
     }
   };
 
@@ -80,32 +89,31 @@ const Onboarding = () => {
           style={{ backgroundImage: filePreview && `url(${filePreview})` }}
         ></div>
 
-      
-          <TextInput
-            placeholder="First Name"
-            onChange={(e) => updateField(e, setFirstName)}
-          />
-          <TextInput
-            placeholder="Last Name"
-            onChange={(e) => updateField(e, setLastName)}
-          />
-          <TextInput
-            placeholder="Bio"
-            onChange={(e) => updateField(e, setBio)}
-          />
-          <TextInput
-            placeholder="Web Link"
-            onChange={(e) => updateField(e, setWebLink)}
-          />
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              handleUpdateUser();
-            }}
-          >
-            Submit
-          </button>
-      
+        {error && file.length === 0 && "Please upload a headshot"}
+
+        <TextInput
+          placeholder="First Name"
+          onChange={(e) => updateField(e, setFirstName)}
+          error={error && !firstName && "Please enter first name"}
+        />
+        <TextInput
+          placeholder="Last Name"
+          onChange={(e) => updateField(e, setLastName)}
+          error={error && !lastName && "Please enter Last name"}
+        />
+        <TextInput placeholder="Bio" onChange={(e) => updateField(e, setBio)} />
+        <TextInput
+          placeholder="Web Link"
+          onChange={(e) => updateField(e, setWebLink)}
+        />
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            handleUpdateUser();
+          }}
+        >
+          Submit
+        </button>
       </div>
     </div>
   );
