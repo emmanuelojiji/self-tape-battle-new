@@ -2,7 +2,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useContext, useRef, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import Header from "../../components/Header";
+import AppHeader from "../../components/AppHeader";
 import TextInput from "../../components/TextInput";
 import { UserContext } from "../../contexts/UserContext";
 import { db, storage } from "../../firebase";
@@ -70,7 +70,7 @@ const Onboarding = () => {
           setFilePreview(previewUrl);
         }}
       />
-      <Header />
+      <AppHeader />
       <div className="page-container">
         <h1>Hey {username}, create your battle profile</h1>
 

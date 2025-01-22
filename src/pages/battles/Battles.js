@@ -1,5 +1,5 @@
 import BattleCard from "../../components/BattleCard";
-import Header from "../../components/Header";
+import AppHeader from "../../components/AppHeader";
 import "./Battles.scss";
 import dune from "../../media/dune.jpg";
 import hairspray from "../../media/hairspray.webp";
@@ -33,7 +33,7 @@ const Battles = () => {
 
   return (
     <>
-      <Header />
+      <AppHeader />
     
       <div className="page-container">
         <div className="page-header">

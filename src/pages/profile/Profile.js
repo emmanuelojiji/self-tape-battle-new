@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
-import Header from "../../components/Header";
+import AppHeader from "../../components/AppHeader";
 import { UserContext } from "../../contexts/UserContext";
 import { db, auth } from "../../firebase";
 import "./Profile.scss";
@@ -109,7 +109,7 @@ const Profile = () => {
   return (
     <>
       <Outlet />
-      <Header />
+      <AppHeader />
 
       <div className="Profile">
         <div className="page-container">

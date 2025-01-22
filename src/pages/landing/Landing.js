@@ -1,5 +1,5 @@
 import "./Landing.scss";
-import "../../components/Header";
+import "../../components/AppHeader";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase";
@@ -12,7 +12,7 @@ const Landing = () => {
     <>
       <Header />
       <section className="billboard">
-        <h1>FIGHT TO BE SEEN</h1>
+        <h1>Win big with weekly battles</h1>
         <Link to="/battles">
           <button>Start Battling</button>
         </Link>

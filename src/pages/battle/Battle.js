@@ -1,5 +1,5 @@
 import "./Battle.scss";
-import Header from "../../components/Header";
+import AppHeader from "../../components/AppHeader";
 import { Link, Outlet, useParams } from "react-router-dom";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { db, storage } from "../../firebase";
@@ -65,8 +65,8 @@ const Battle = ({}) => {
       }
 
       console.log(battleScreenshot.data().deadline > Date.now());
-    } catch {
-      console.log("Sorry we couldn't get this!");
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -81,8 +81,8 @@ const Battle = ({}) => {
         entriesArray.push(doc.data());
       });
       setEntries(entriesArray);
-    } catch {
-      console.log("can't get this sorry");
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -135,7 +135,7 @@ const Battle = ({}) => {
             setUploadModalVisible={setUploadModalVisible}
           />
         )}
-        <Header />
+        <AppHeader />
         <div className="page-container">
           <Outlet voters={voters} />
           <div className="page-header">
